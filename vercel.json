@@ -1,6 +1,0 @@
-{
-  "rewrites": [
-    { "source": "/value-report.html", "destination": "/value-report.html" },
-    { "source": "/((?!assets|api|.*\\.).*)", "destination": "/index.html" }
-  ]
-}
