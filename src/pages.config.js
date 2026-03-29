@@ -51,6 +51,7 @@ import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
 import BookingConfirmation from './pages/BookingConfirmation';
 import Checkout from './pages/Checkout';
+import Contact from './pages/Contact';
 import FlexibleResults from './pages/FlexibleResults';
 import Home from './pages/Home';
 import ImageUploader from './pages/ImageUploader';
@@ -64,6 +65,7 @@ export const PAGES = {
     "BlogPost": BlogPost,
     "BookingConfirmation": BookingConfirmation,
     "Checkout": Checkout,
+    "Contact": Contact,
     "FlexibleResults": FlexibleResults,
     "Home": Home,
     "ImageUploader": ImageUploader,

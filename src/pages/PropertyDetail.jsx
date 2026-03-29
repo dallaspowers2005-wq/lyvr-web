@@ -442,6 +442,17 @@ export default function PropertyDetail() {
                   <p className="text-stone-500 text-sm">Bedrooms</p>
                 </div>
               </div>
+              {property.beds && (
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center">
+                    <Bed className="w-6 h-6 text-amber-700" />
+                  </div>
+                  <div>
+                    <p className="text-2xl font-semibold text-stone-800">{property.beds}</p>
+                    <p className="text-stone-500 text-sm">Beds</p>
+                  </div>
+                </div>
+              )}
               {property.bathrooms && (
                 <div className="flex items-center gap-3">
                   <div className="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center">
@@ -489,6 +500,60 @@ export default function PropertyDetail() {
                       <span className="text-stone-700">{amenity}</span>
                     </div>
                   ))}
+                </div>
+              </div>
+            )}
+
+            {/* Where You'll Sleep */}
+            {property.bedrooms > 0 && (
+              <div className="bg-white rounded-2xl shadow-lg p-8">
+                <h2 className="text-2xl text-stone-800 mb-6" style={{ fontFamily: 'Georgia, serif' }}>
+                  Where You'll Sleep
+                </h2>
+                <div className="flex gap-4 overflow-x-auto pb-4 -mx-2 px-2 snap-x snap-mandatory">
+                  {(() => {
+                    // Generate bedroom cards based on bedroom count and guest capacity
+                    const bedrooms = property.bedrooms || 1;
+                    const bedroomDetails = property.bedroom_details || null;
+
+                    if (bedroomDetails && Array.isArray(bedroomDetails)) {
+                      return bedroomDetails.map((room, idx) => (
+                        <div key={idx} className="flex-shrink-0 w-48 border border-stone-200 rounded-xl p-5 snap-start">
+                          <Bed className="w-7 h-7 text-stone-600 mb-3" />
+                          <p className="font-medium text-stone-800 text-sm">{room.name}</p>
+                          <p className="text-stone-500 text-xs mt-1">{room.beds}</p>
+                        </div>
+                      ));
+                    }
+
+                    // Auto-generate reasonable bedroom layout
+                    const rooms = [];
+                    const guestsPerRoom = Math.ceil((property.max_guests || bedrooms * 2) / bedrooms);
+
+                    for (let i = 0; i < bedrooms; i++) {
+                      let bedType;
+                      if (i === 0) {
+                        bedType = '1 king bed';
+                      } else if (i === 1) {
+                        bedType = '1 queen bed';
+                      } else if (guestsPerRoom >= 4) {
+                        bedType = i % 2 === 0 ? '2 queen beds' : '2 twin beds';
+                      } else {
+                        bedType = i % 3 === 0 ? '1 king bed' : i % 3 === 1 ? '1 queen bed' : '2 twin beds';
+                      }
+
+                      rooms.push(
+                        <div key={i} className="flex-shrink-0 w-48 border border-stone-200 rounded-xl p-5 snap-start">
+                          <Bed className="w-7 h-7 text-stone-600 mb-3" />
+                          <p className="font-medium text-stone-800 text-sm">
+                            {i === 0 ? 'Master Bedroom' : `Bedroom ${i + 1}`}
+                          </p>
+                          <p className="text-stone-500 text-xs mt-1">{bedType}</p>
+                        </div>
+                      );
+                    }
+                    return rooms;
+                  })()}
                 </div>
               </div>
             )}
@@ -554,11 +619,6 @@ export default function PropertyDetail() {
                 </motion.div>
               ) : (
                 <>
-                  <div className="mb-6">
-                    <span className="text-2xl font-semibold text-stone-800">${property.price_per_night}</span>
-                    <span className="text-stone-500"> / night</span>
-                  </div>
-
                   {/* Date Selection */}
                   <div className="mb-4">
                     <div className="grid grid-cols-2 gap-3 mb-3">

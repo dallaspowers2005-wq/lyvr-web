@@ -14,7 +14,7 @@ Deno.serve(async (req) => {
 
   try {
     const base44 = createClientFromRequest(req);
-    const { checkIn, checkOut, guests, minGuests, maxPrice } = await req.json();
+    const { checkIn, checkOut, guests, minGuests, maxPrice, minBedrooms } = await req.json();
 
     const allProperties = await base44.entities.Property.list();
 
@@ -30,6 +30,9 @@ Deno.serve(async (req) => {
 
       // Apply price filter
       if (maxPrice && property.price_per_night > parseInt(maxPrice)) return false;
+
+      // Apply bedrooms filter
+      if (minBedrooms && property.bedrooms < parseInt(minBedrooms)) return false;
 
       return true;
     });

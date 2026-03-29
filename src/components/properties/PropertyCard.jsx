@@ -66,19 +66,18 @@ export default function PropertyCard({ property, index = 0 }) {
             <RobustCardImage src={property.hero_image} alt={property.name} />
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
 
-            {/* Price Tag */}
-            <div className="absolute top-4 right-4">
-              <span className="px-3 py-1.5 bg-stone-900/80 backdrop-blur-sm rounded-full text-white text-sm font-medium">
-                ${property.price_per_night?.toLocaleString()}/night
-              </span>
-            </div>
-
             {/* Quick Stats */}
-            <div className="absolute bottom-4 left-4 right-4 flex gap-4">
+            <div className="absolute bottom-4 left-4 right-4 flex flex-wrap gap-3">
               <span className="flex items-center gap-1.5 text-white text-sm">
                 <Bed className="w-4 h-4" />
                 {property.bedrooms} Bedrooms
               </span>
+              {property.beds && (
+                <span className="flex items-center gap-1.5 text-white text-sm">
+                  <Bed className="w-4 h-4" />
+                  {property.beds} Beds
+                </span>
+              )}
               {property.bathrooms && (
                 <span className="flex items-center gap-1.5 text-white text-sm">
                   <Bath className="w-4 h-4" />

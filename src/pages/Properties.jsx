@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { motion } from 'framer-motion';
-import { Search, SlidersHorizontal, Calendar, Users, X, Loader2 } from 'lucide-react';
+import { Search, SlidersHorizontal, Calendar, Users, Bed, X, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -22,7 +22,8 @@ export default function Properties() {
     checkOut: urlParams.get('checkOut') || '',
     guests: urlParams.get('guests') || '',
     minGuests: '',
-    maxPrice: ''
+    maxPrice: '',
+    minBedrooms: ''
   });
 
   const isFlexible = urlParams.get('flexible') === '1';
@@ -31,7 +32,7 @@ export default function Properties() {
     : null;
 
   const { data: filteredProperties = [], isLoading } = useQuery({
-    queryKey: ['filteredProperties', filters.checkIn, filters.checkOut, filters.guests, filters.minGuests, filters.maxPrice, isFlexible],
+    queryKey: ['filteredProperties', filters.checkIn, filters.checkOut, filters.guests, filters.minGuests, filters.maxPrice, filters.minBedrooms, isFlexible],
     queryFn: async () => {
       const response = await base44.functions.invoke('filterProperties', filters);
       const all = response.data || [];
@@ -48,7 +49,8 @@ export default function Properties() {
       checkOut: '',
       guests: '',
       minGuests: '',
-      maxPrice: ''
+      maxPrice: '',
+      minBedrooms: ''
     });
   };
 
@@ -134,6 +136,23 @@ export default function Properties() {
                   <SelectItem value="12">12+ Guests</SelectItem>
                   <SelectItem value="16">16+ Guests</SelectItem>
                   <SelectItem value="20">20+ Guests</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            {/* Bedrooms Filter */}
+            <div className="flex items-center gap-2">
+              <Bed className="w-4 h-4 text-stone-400" />
+              <Select value={filters.minBedrooms} onValueChange={(v) => setFilters({...filters, minBedrooms: v})}>
+                <SelectTrigger className="w-36 h-10">
+                  <SelectValue placeholder="Bedrooms" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="2">2+ Bedrooms</SelectItem>
+                  <SelectItem value="4">4+ Bedrooms</SelectItem>
+                  <SelectItem value="6">6+ Bedrooms</SelectItem>
+                  <SelectItem value="8">8+ Bedrooms</SelectItem>
+                  <SelectItem value="10">10+ Bedrooms</SelectItem>
                 </SelectContent>
               </Select>
             </div>

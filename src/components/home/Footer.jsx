@@ -144,6 +144,76 @@ export default function Footer() {
         </div>
       </div>
 
+      {/* Contact CTA Section */}
+      <div className="py-12 md:py-16 bg-stone-900">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <h3
+              className="text-2xl md:text-3xl text-white mb-4"
+              style={{ fontFamily: 'Georgia, serif' }}
+            >
+              Have Questions? We're Here to Help
+            </h3>
+            <p className="text-stone-300 mb-8 max-w-lg mx-auto">
+              Our team of local property managers is ready to help you plan the perfect getaway.
+            </p>
+            <Link
+              to={createPageUrl('Contact')}
+              onClick={() => window.scrollTo(0, 0)}
+              className="inline-flex items-center gap-2 px-8 py-4 bg-white text-stone-800 hover:bg-stone-100 rounded-xl font-medium transition-all duration-300 shadow-lg hover:shadow-xl"
+            >
+              Contact Us
+              <ArrowRight className="w-5 h-5" />
+            </Link>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Trust Badges */}
+      <div className="py-12 bg-stone-900 border-t border-stone-800">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-10 md:gap-16">
+            {/* VRBO PremierHost */}
+            <div className="flex flex-col items-center gap-2">
+              <div className="flex items-center gap-2">
+                <span className="text-2xl font-bold text-white" style={{ fontFamily: 'Georgia, serif', fontStyle: 'italic' }}>Vrbo</span>
+                <span className="text-amber-400 text-lg">PremierHost</span>
+              </div>
+              <div className="flex gap-1">
+                {[...Array(5)].map((_, i) => (
+                  <svg key={i} className="w-5 h-5 text-amber-400 fill-current" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                ))}
+              </div>
+            </div>
+
+            {/* Airbnb Superhost */}
+            <div className="flex flex-col items-center gap-2">
+              <div className="flex items-center gap-2">
+                <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 2.5L9.5 8.5L3 9.5L7.5 14L6.5 20.5L12 17.5L17.5 20.5L16.5 14L21 9.5L14.5 8.5L12 2.5Z" fill="#FF5A5F" />
+                </svg>
+                <span className="text-xl font-medium text-white">airbnb</span>
+                <span className="text-[#FF5A5F] text-lg font-medium">superhost</span>
+              </div>
+              <div className="flex gap-1">
+                {[...Array(5)].map((_, i) => (
+                  <svg key={i} className="w-5 h-5 text-amber-400 fill-current" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Bottom Bar */}
       <div className="py-8 border-t border-stone-800">
         <div className="max-w-7xl mx-auto px-6">
@@ -152,9 +222,9 @@ export default function Footer() {
               © {new Date().getFullYear()} LoveYourVacationRental.com. All rights reserved.
             </p>
             <div className="flex gap-6">
-              <a href="mailto:Keith@loveyourvacationrental.com" className="text-stone-400 hover:text-white text-sm transition-colors">
+              <Link to={createPageUrl('Contact')} onClick={() => window.scrollTo(0, 0)} className="text-stone-400 hover:text-white text-sm transition-colors">
                 Contact Us
-              </a>
+              </Link>
               <Link to={createPageUrl('Home')} className="text-stone-400 hover:text-white text-sm transition-colors">
                 Privacy Policy
               </Link>

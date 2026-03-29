@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Home, Building2 } from 'lucide-react';
+import { Menu, X, Home, Building2, BookOpen, Phone } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 
@@ -9,7 +9,9 @@ export default function MobileNav() {
 
   const navItems = [
     { label: 'Home', icon: Home, page: 'Home' },
-    { label: 'Properties', icon: Building2, page: 'Properties' }
+    { label: 'Properties', icon: Building2, page: 'Properties' },
+    { label: 'Blog', icon: BookOpen, page: 'Blog' },
+    { label: 'Contact Us', icon: Phone, page: 'Contact' }
   ];
 
   return (
