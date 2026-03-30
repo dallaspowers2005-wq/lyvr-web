@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Loader2, AlertCircle } from 'lucide-react';
-import { base44 } from '@/api/base44Client';
-
 // Simple in-memory cache so navigating back doesn't re-fetch
 const calendarCache = {};
 
@@ -43,14 +41,17 @@ export default function AvailabilityCalendar({
         const endDate = new Date(today.getFullYear() + 1, today.getMonth(), today.getDate())
           .toISOString().split('T')[0];
 
-        const response = await base44.functions.invoke('getCalendar', {
-          listingId: listingId || null,
-          propertyName: propertyName || null,
-          startDate,
-          endDate
+        const response = await fetch('/api/getCalendar', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            propertyName: propertyName || null,
+            startDate,
+            endDate
+          })
         });
 
-        const data = response.data;
+        const data = await response.json();
 
         if (data.success && data.calendar && Object.keys(data.calendar).length > 0) {
           setCalendar(data.calendar);
@@ -153,13 +154,11 @@ export default function AvailabilityCalendar({
     const startDate = today.toISOString().split('T')[0];
     const endDate = new Date(today.getFullYear() + 1, today.getMonth(), today.getDate())
       .toISOString().split('T')[0];
-    base44.functions.invoke('getCalendar', {
-      listingId: listingId || null,
-      propertyName: propertyName || null,
-      startDate,
-      endDate
-    }).then(response => {
-      const data = response.data;
+    fetch('/api/getCalendar', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ propertyName: propertyName || null, startDate, endDate })
+    }).then(response => response.json()).then(data => {
       if (data.success && data.calendar && Object.keys(data.calendar).length > 0) {
         setCalendar(data.calendar);
         calendarCache[cacheKey] = { data: data.calendar, timestamp: Date.now() };

@@ -79,11 +79,16 @@ export default function Checkout() {
 
   const fetchQuoteFromAPI = async () => {
     try {
-      const { data } = await base44.functions.invoke('getCalendar', {
-        propertyName: bookingData.propertyName,
-        startDate: bookingData.checkIn,
-        endDate: bookingData.checkOut
+      const calResponse = await fetch('/api/getCalendar', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          propertyName: bookingData.propertyName,
+          startDate: bookingData.checkIn,
+          endDate: bookingData.checkOut
+        })
       });
+      const data = await calResponse.json();
 
       if (data && data.calendar) {
         const checkInDate = new Date(bookingData.checkIn + 'T00:00:00');

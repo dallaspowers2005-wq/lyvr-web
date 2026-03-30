@@ -252,22 +252,22 @@ export default function PropertyDetail() {
     async function checkAvail() {
       setChecking(true);
       try {
-        const { data } = await base44.functions.invoke('checkAvailability', {
-          propertyName: property.name,
-          checkIn,
-          checkOut
+        const response = await fetch('/api/checkAvailability', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ propertyName: property.name, checkIn, checkOut })
         });
-        
+        const data = await response.json();
+
         // Calculate nights correctly (checkout day is not charged)
         const checkInDate = new Date(checkIn + 'T00:00:00');
         const checkOutDate = new Date(checkOut + 'T00:00:00');
         const nights = Math.floor((checkOutDate - checkInDate) / (1000 * 60 * 60 * 24));
-        
-        // Override the nights from backend with our calculation
+
         if (data) {
           data.nights = nights;
         }
-        
+
         setAvailability(data);
       } catch (error) {
         setAvailability({ available: false, message: 'Error checking availability', canBook: false });
