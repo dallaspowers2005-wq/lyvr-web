@@ -177,49 +177,19 @@ export default function Footer() {
       {/* Trust Badges */}
       <div className="py-16 bg-black">
         <div className="max-w-3xl mx-auto px-6">
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-16 md:gap-24">
-            {/* VRBO PremierHost */}
-            <div className="flex flex-col items-center gap-3">
-              <div className="flex flex-col items-center">
-                <svg className="h-10 mb-1" viewBox="0 0 120 40" fill="none">
-                  <text x="0" y="32" fontFamily="Georgia, serif" fontSize="32" fontWeight="bold" fontStyle="italic" fill="white">Vrbo</text>
-                </svg>
-                <div className="flex items-center gap-1.5">
-                  <span className="text-white text-base font-medium tracking-wide">PremierHost</span>
-                  <svg className="w-4 h-4 text-orange-500 fill-current" viewBox="0 0 20 20">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
-                </div>
-              </div>
-              <div className="flex gap-1">
-                {[...Array(5)].map((_, i) => (
-                  <svg key={i} className="w-6 h-6 text-orange-500 fill-current" viewBox="0 0 20 20">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
-                ))}
-              </div>
-            </div>
-
-            {/* Airbnb Superhost */}
-            <div className="flex flex-col items-center gap-3">
-              <div className="flex flex-col items-center">
-                <div className="flex items-center gap-1 mb-1">
-                  <svg className="w-7 h-7" viewBox="0 0 32 32" fill="none">
-                    <path d="M16 1C16 1 6 14 6 20C6 25.5 10.5 30 16 30C21.5 30 26 25.5 26 20C26 14 16 1 16 1Z" fill="#FF5A5F" opacity="0.15"/>
-                    <path d="M16 2.5C16.8 4.2 21.3 12.8 23.5 17.5C24.5 19.5 25 21 25 22C25 26.5 21 30 16 30C11 30 7 26.5 7 22C7 21 7.5 19.5 8.5 17.5C10.7 12.8 15.2 4.2 16 2.5Z" fill="none" stroke="#FF5A5F" strokeWidth="1.5"/>
-                  </svg>
-                  <span className="text-xl text-white" style={{ fontFamily: 'system-ui, sans-serif', fontWeight: 600, letterSpacing: '-0.02em' }}>airbnb</span>
-                </div>
-                <span className="text-[#FF5A5F] text-base font-medium tracking-wide">superhost</span>
-              </div>
-              <div className="flex gap-1">
-                {[...Array(5)].map((_, i) => (
-                  <svg key={i} className="w-6 h-6 text-amber-400 fill-current" viewBox="0 0 20 20">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
-                ))}
-              </div>
-            </div>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-12 md:gap-20">
+            <img
+              src="https://le-de.cdn-website.com/5e84c417a30c4704a18ef1db9ac0fc14/dms3rep/multi/opt/W-Vrbo-56102b98-1920w.png"
+              alt="VRBO PremierHost"
+              className="h-28 md:h-36 object-contain"
+              referrerPolicy="no-referrer"
+            />
+            <img
+              src="https://le-de.cdn-website.com/5e84c417a30c4704a18ef1db9ac0fc14/dms3rep/multi/opt/W-airbnb-1920w.png"
+              alt="Airbnb Superhost"
+              className="h-28 md:h-36 object-contain"
+              referrerPolicy="no-referrer"
+            />
           </div>
         </div>
       </div>
